@@ -1,0 +1,116 @@
+Qus). Quiz Generator: Build a tool to generate quizzes on various topics. Allow users to select a quiz category (e.g., geography, history, science) and difficulty level,
+      then generate a quiz with multiple-choice questions.
+
+ans). // Sample quiz questions data
+const quizQuestions = {
+  geography: [
+    {
+      question: "What is the capital of France?",
+      options: ["Paris", "London", "Berlin", "Rome"],
+      answer: "Paris"
+    },
+    {
+      question: "Which river is the longest in the world?",
+      options: ["Nile", "Amazon", "Yangtze", "Mississippi"],
+      answer: "Nile"
+    }
+  ],
+  history: [
+    {
+      question: "Who was the first president of the United States?",
+      options: ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "John Adams"],
+      answer: "George Washington"
+    },
+    {
+      question: "In which year did World War II end?",
+      options: ["1945", "1918", "1939", "1950"],
+      answer: "1945"
+    }
+  ],
+  science: [
+    {
+      question: "What is the chemical symbol for water?",
+      options: ["H2O", "CO2", "O2", "NaCl"],
+      answer: "H2O"
+    },
+    {
+      question: "Which planet is known as the Red Planet?",
+      options: ["Mars", "Venus", "Jupiter", "Saturn"],
+      answer: "Mars"
+    }
+  ]
+};
+
+// Function to generate a quiz based on category and difficulty level
+function generateQuiz(category, difficulty) {
+  const questions = quizQuestions[category.toLowerCase()];
+  if (!questions) {
+    return "Invalid category.";
+  }
+
+  // Choose questions based on difficulty level (for demonstration, we choose randomly)
+  const selectedQuestions = questions.slice(0, 2); // Select 2 questions for demonstration
+
+  return selectedQuestions.map((question, index) => {
+    return {
+      id: index + 1,
+      question: question.question,
+      options: question.options,
+      answer: question.answer,
+      userAnswer: null
+    };
+  });
+}
+
+// Function to display quiz questions
+function displayQuiz(quiz) {
+  quiz.forEach(question => {
+    console.log(`Question ${question.id}: ${question.question}`);
+    question.options.forEach((option, index) => {
+      console.log(`${index + 1}. ${option}`);
+    });
+    console.log("");
+  });
+}
+
+// Function to take user input
+function getUserInput(question) {
+  return parseInt(prompt(question));
+}
+
+// Function to take quiz
+function takeQuiz(quiz) {
+  quiz.forEach(question => {
+    const userInput = getUserInput(`Enter your answer for Question ${question.id}: `);
+    if (userInput >= 1 && userInput <= question.options.length) {
+      question.userAnswer = question.options[userInput - 1];
+    } else {
+      console.log("Invalid input. Skipping question...");
+    }
+  });
+}
+
+// Function to check quiz answers and calculate score
+function checkQuiz(quiz) {
+  let score = 0;
+  quiz.forEach(question => {
+    if (question.userAnswer === question.answer) {
+      score++;
+    }
+  });
+  return score;
+}
+
+// Example usage:
+const category = "Geography";
+const difficulty = "Easy";
+const quiz = generateQuiz(category, difficulty);
+if (typeof quiz === "string") {
+  console.log(quiz);
+} else {
+  console.log(`Generated ${category} Quiz (${difficulty}):`);
+  displayQuiz(quiz);
+  takeQuiz(quiz);
+  const score = checkQuiz(quiz);
+  console.log(`Your score: ${score}/${quiz.length}`);
+}

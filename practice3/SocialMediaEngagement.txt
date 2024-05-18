@@ -1,0 +1,48 @@
+Qus). Social Media Analytics Dashboard: Design a dashboard that analyzes social media engagement metrics. Allow users to input social media account data (likes, comments, shares)
+      and display analytics such as engagement rate and most popular posts.
+
+
+ans ). // Function to calculate engagement rate
+function calculateEngagementRate(likes, comments, shares) {
+  // Formula: ((Likes + Comments + Shares) / Total Followers) * 100
+  const totalEngagements = likes + comments + shares;
+  const totalFollowers = 10000; // Assuming a total of 10,000 followers for example
+  return ((totalEngagements / totalFollowers) * 100).toFixed(2);
+}
+
+// Function to find most popular posts
+function findMostPopularPosts(posts) {
+  // Sort posts by total engagements (likes + comments + shares) in descending order
+  const sortedPosts = posts.slice().sort((a, b) => {
+    const totalEngagementsA = a.likes + a.comments + a.shares;
+    const totalEngagementsB = b.likes + b.comments + b.shares;
+    return totalEngagementsB - totalEngagementsA;
+  });
+  // Return the top 5 most popular posts
+  return sortedPosts.slice(0, 5);
+}
+
+// Example data
+const posts = [
+  { id: 1, likes: 150, comments: 20, shares: 30 },
+  { id: 2, likes: 100, comments: 25, shares: 15 },
+  { id: 3, likes: 200, comments: 15, shares: 40 },
+  { id: 4, likes: 80, comments: 30, shares: 10 },
+  { id: 5, likes: 120, comments: 10, shares: 20 }
+];
+
+// Calculate engagement rate
+const totalLikes = posts.reduce((total, post) => total + post.likes, 0);
+const totalComments = posts.reduce((total, post) => total + post.comments, 0);
+const totalShares = posts.reduce((total, post) => total + post.shares, 0);
+const engagementRate = calculateEngagementRate(totalLikes, totalComments, totalShares);
+console.log("Engagement Rate:", engagementRate + "%");
+
+// Find most popular posts
+const popularPosts = findMostPopularPosts(posts);
+console.log("\nMost Popular Posts:");
+popularPosts.forEach(post => {
+  console.log(`Post ${post.id}: Likes - ${post.likes}, Comments - ${post.comments}, Shares - ${post.shares}`);
+});
+
+

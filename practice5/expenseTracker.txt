@@ -1,0 +1,41 @@
+Qus).Travel Expense Tracker: Create a tool to help users track their travel expenses. Allow users to input expenses for transportation, accommodation, meals, etc.,
+     and categorize expenses by trip or type.
+
+
+
+ans).// Expense tracker object to store expenses
+const expenseTracker = {
+    trips: {}, // Object to store trips and their corresponding expenses
+    categories: ['Transportation', 'Accommodation', 'Meals', 'Others'], // Expense categories
+};
+
+// Function to add an expense to a trip
+function addExpense(tripName, expense) {
+    if (!expenseTracker.trips[tripName]) {
+        expenseTracker.trips[tripName] = [];
+    }
+    expenseTracker.trips[tripName].push(expense);
+    console.log(`Expense added to trip '${tripName}':`, expense);
+}
+
+// Function to display expenses for a trip
+function displayTripExpenses(tripName) {
+    if (expenseTracker.trips[tripName]) {
+        console.log(`Expenses for trip '${tripName}':`);
+        expenseTracker.trips[tripName].forEach((expense, index) => {
+            console.log(`${index + 1}. ${expense.category}: $${expense.amount}`);
+        });
+    } else {
+        console.log(`No expenses found for trip '${tripName}'.`);
+    }
+}
+
+// Example usage
+addExpense('Trip to Paris', { category: 'Transportation', amount: 100 });
+addExpense('Trip to Paris', { category: 'Accommodation', amount: 200 });
+addExpense('Trip to Tokyo', { category: 'Meals', amount: 150 });
+addExpense('Trip to Tokyo', { category: 'Meals', amount: 100 });
+addExpense('Trip to Tokyo', { category: 'Transportation', amount: 50 });
+
+displayTripExpenses('Trip to Paris');
+displayTripExpenses('Trip to Tokyo');

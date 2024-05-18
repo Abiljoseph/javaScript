@@ -1,0 +1,49 @@
+// Define a function to create a new book
+function createBook(id, title, author, genre, price) {
+    return {
+        id: id,
+        title: title,
+        author: author,
+        genre: genre,
+        price: price
+    };
+}
+
+// Define a function to add a new book to the inventory
+function addBook(books, id, title, author, genre, price) {
+    const newBook = createBook(id, title, author, genre, price);
+    books.push(newBook);
+}
+
+// Define a function to update book information by ID
+function updateBook(books, id, updatedInfo) {
+    const bookToUpdate = books.find(book => book.id === id);
+    if (bookToUpdate) {
+        Object.assign(bookToUpdate, updatedInfo);
+    } else {
+        console.log("Book not found.");
+    }
+}
+
+// Define a function to search books by title or author
+function searchBooks(books, query) {
+    return books.filter(book => {
+        return book.title.toLowerCase().includes(query.toLowerCase()) || 
+               book.author.toLowerCase().includes(query.toLowerCase());
+    });
+}
+
+// Example usage
+const bookstore = [];
+
+// Add new books
+addBook(bookstore, 1, "Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "Fantasy", 10.99);
+addBook(bookstore, 2, "The Great Gatsby", "F. Scott Fitzgerald", "Classic", 8.99);
+addBook(bookstore, 3, "To Kill a Mockingbird", "Harper Lee", "Classic", 9.99);
+
+// Update book information
+updateBook(bookstore, 1, { title: "Harry Potter and the Philosopher's Stone", price: 12.99 });
+
+// Search for books
+console.log(searchBooks(bookstore, "Harry Potter")); // Output: [{ id: 1, title: "Harry Potter and the Philosopher's Stone", author: "J.K. Rowling", genre: "Fantasy", price: 12.99 }]
+console.log(searchBooks(bookstore, "Fitzgerald")); // Output: [{ id: 2, title: "The Great Gatsby", author: "F. Scott Fitzgerald", genre: "Classic", price: 8.99 }]

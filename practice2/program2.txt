@@ -1,0 +1,54 @@
+qus 1).Job Application Tracker: Build a tool to help users track their job applications. Allow users to input details of each application (company name, position, application date)
+       and track the status (pending, interview scheduled, rejected).
+
+==================================================================================================================
+
+ans ). 
+         // Function to create a new job application
+function createJobApplication(companyName, position, applicationDate) {
+    return {
+        companyName,
+        position,
+        applicationDate,
+        status: "Pending" // Initial status is set to "Pending"
+    };
+}
+
+// Function to update the status of a job application
+function updateApplicationStatus(application, newStatus) {
+    application.status = newStatus;
+}
+
+// Example usage:
+const jobApplications = [];
+
+// Function to add a new job application
+function addJobApplication(companyName, position, applicationDate) {
+    const newApplication = createJobApplication(companyName, position, applicationDate);
+    jobApplications.push(newApplication);
+}
+
+// Function to update the status of a job application
+function updateStatus(companyName, newPosition, newStatus) {
+    const application = jobApplications.find(app => app.companyName === companyName && app.position === newPosition);
+    if (application) {
+        updateApplicationStatus(application, newStatus);
+        console.log(`Status of application for ${companyName} - ${newPosition} updated to: ${newStatus}`);
+    } else {
+        console.log(`Application for ${companyName} - ${newPosition} not found.`);
+    }
+}
+
+// Add new job applications
+addJobApplication("Google", "Software Engineer", "2024-04-20");
+addJobApplication("Microsoft", "Product Manager", "2024-04-21");
+
+// Update status of job applications
+updateStatus("Google", "Software Engineer", "Interview Scheduled");
+updateStatus("Microsoft", "Product Manager", "Rejected");
+
+// Output all job applications
+console.log("All job applications:");
+jobApplications.forEach((application, index) => {
+    console.log(`${index + 1}. Company: ${application.companyName}, Position: ${application.position}, Application Date: ${application.applicationDate}, Status: ${application.status}`);
+});

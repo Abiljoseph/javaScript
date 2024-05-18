@@ -1,0 +1,117 @@
+ Qus)Recipe Sharing Platform: Design a platform for users to share and discover new recipes. Allow users to upload their own recipes, search for recipes by ingredients or cuisine,
+    and rate and review recipes.
+
+========================================================================================================
+
+ans). // express--------------------------------------------------------------------
+
+    const express = require('express');
+    const mongoose = require('mongoose'); 
+    const bodyParser = require('body-parser');
+const app = express();
+
+// Middleware
+app.use(bodyParser.json());
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost/recipe_sharing_platform', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
+
+// Routes
+const userRoutes = require('./routes/userRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
+
+app.use('/users', userRoutes);
+app.use('/recipes', recipeRoutes);
+
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+//routes---------------------------------------------------------------------------
+
+const express = require('express');
+const router = express.Router();
+const Recipe = require('../models/Recipe');
+
+// Get all recipes
+router.get('/', async (req, res) => {
+    try {
+        const recipes = await Recipe.find();
+        res.json(recipes);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Create a new recipe
+router.post('/', async (req, res) => {
+    const recipe = new Recipe({
+        title: req.body.title,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+        cuisine: req.body.cuisine,
+        // Add more fields as needed
+    });
+
+    try {
+        const newRecipe = await recipe.save();
+        res.status(201).json(newRecipe);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// Get a single recipe
+router.get('/:id', getRecipe, (req, res) => {
+    res.json(res.recipe);
+});
+
+// Middleware to get a single recipe by ID
+async function getRecipe(req, res, next) {
+    try {
+        const recipe = await Recipe.findById(req.params.id);
+        if (recipe == null) {
+            return res.status(404).json({ message: 'Recipe not found' });
+        }
+        res.recipe = recipe;
+        next();
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+}
+
+// Update a recipe
+router.patch('/:id', getRecipe, async (req, res) => {
+    // Update only the fields that are present in the request body
+    if (req.body.title != null) {
+        res.recipe.title = req.body.title;
+    }
+    if (req.body.ingredients != null) {
+        res.recipe.ingredients = req.body.ingredients;
+    }
+    // Update other fields as needed
+
+    try {
+        const updatedRecipe = await res.recipe.save();
+        res.json(updatedRecipe);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// Delete a recipe
+router.delete('/:id', getRecipe, async (req, res) => {
+    try {
+        await res.recipe.remove();
+        res.json({ message: 'Recipe deleted' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+module.exports = router;
+
+
+ 

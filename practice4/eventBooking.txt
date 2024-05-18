@@ -1,0 +1,50 @@
+Qus ). Event Ticketing System: Design a system to sell tickets for events such as concerts or sports games. Allow users to search for events, select seats, make purchases,
+       and receive digital tickets.
+
+
+ans ).    // Define an event object to represent events
+    function createEvent(name, venue, date, seats) {
+    return {
+    name,
+    venue,
+    date,
+    seats
+  };
+}
+
+// Sample events
+const events = [
+  createEvent('Concert', 'Arena A', '2024-05-01', 100),
+  createEvent('Sports Game', 'Stadium B', '2024-05-10', 200)
+];
+
+// Function to search for events
+function searchEvents(keyword) {
+  return events.filter(event => event.name.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+// Function to select seats for an event
+function selectSeats(event, numSeats) {
+  if (numSeats <= event.seats) {
+    event.seats -= numSeats;
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Function to purchase tickets
+function purchaseTicket(event, numSeats) {
+  if (selectSeats(event, numSeats)) {
+    return `Digital Ticket for ${event.name} - Seats: ${numSeats}`;
+  } else {
+    return 'Not enough seats available.';
+  }
+}
+
+// Example usage:
+console.log("Search for 'Concert':", searchEvents('Concert'));
+const selectedEvent = events[0];
+console.log("Select 2 seats for Concert:", selectSeats(selectedEvent, 2));
+console.log("Purchase ticket for Concert:", purchaseTicket(selectedEvent, 2));
+

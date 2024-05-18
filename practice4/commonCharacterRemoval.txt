@@ -1,0 +1,52 @@
+Qus ).Recursively remove all adjacent duplicates
+
+
+     Given a string s, remove all its adjacent duplicate characters recursively. 
+
+Note: For some test cases, the resultant string would be an empty string. In that case, the function should return the empty string only.
+
+
+Example 1:
+Input:
+S = "geeksforgeek"
+Output: "gksforgk"
+Explanation: 
+g(ee)ksforg(ee)k -> gksforgk 
+
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function rremove() which takes the string S as input parameter and returns the resultant string.
+
+ans). function rremove(S) {
+    // Initialize an empty string to store the result
+    let result = "";
+    
+    // Function to remove adjacent duplicates recursively
+    function removeDuplicates(s) {
+        let modified = false;
+        
+        for (let i = 0; i < s.length; i++) {
+            // If the current character is equal to the next character
+            if (s[i] === s[i + 1]) {
+                // Remove the adjacent duplicate characters
+                modified = true;
+                i++; // Skip the next character
+            } else {
+                // Append the current character to the result
+                result += s[i];
+            }
+        }
+        
+        // If any adjacent duplicates were removed, call the function recursively
+        if (modified) {
+            result = ""; // Reset the result
+            removeDuplicates(s);
+        }
+    }
+    
+    // Start removing adjacent duplicates recursively
+    removeDuplicates(S);
+    
+    return result;
+}
+

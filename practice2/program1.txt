@@ -1,0 +1,238 @@
+1)Music Streaming Service: Develop a program that simulates a music streaming service. Allow users to create playlists, search for songs or artists, 
+  and play music with features like shuffle and repeat.
+===============================================================================================
+ans). using class 
+  
+      class Song {
+    constructor(title, artist, duration) {
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration;
+    }
+}
+
+class Playlist {
+    constructor(name) {
+        this.name = name;
+        this.songs = [];
+    }
+
+    addSong(song) {
+        this.songs.push(song);
+    }
+
+    play() {
+        console.log(`Now playing playlist: ${this.name}`);
+        this.songs.forEach((song, index) => {
+            console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+        });
+    }
+}
+
+class MusicPlayer {
+    constructor() {
+        this.playlists = [];
+        this.currentPlaylist = null;
+        this.shuffle = false;
+        this.repeat = false;
+    }
+
+    createPlaylist(name) {
+        const playlist = new Playlist(name);
+        this.playlists.push(playlist);
+        return playlist;
+    }
+
+    search(songTitle) {
+        const searchResults = [];
+        this.playlists.forEach(playlist => {
+            playlist.songs.forEach(song => {
+                if (song.title.toLowerCase().includes(songTitle.toLowerCase())) {
+                    searchResults.push(song);
+                }
+            });
+        });
+        return searchResults;
+    }
+
+    setPlaylist(playlistName) {
+        const playlist = this.playlists.find(playlist => playlist.name === playlistName);
+        if (playlist) {
+            this.currentPlaylist = playlist;
+            console.log(`Current playlist set to: ${playlistName}`);
+        } else {
+            console.log(`Playlist '${playlistName}' not found.`);
+        }
+    }
+
+    toggleShuffle() {
+        this.shuffle = !this.shuffle;
+        console.log(`Shuffle ${this.shuffle ? 'enabled' : 'disabled'}`);
+    }
+
+    toggleRepeat() {
+        this.repeat = !this.repeat;
+        console.log(`Repeat ${this.repeat ? 'enabled' : 'disabled'}`);
+    }
+
+    play() {
+        if (!this.currentPlaylist) {
+            console.log('No playlist selected.');
+            return;
+        }
+        if (this.shuffle) {
+            const shuffledSongs = [...this.currentPlaylist.songs];
+            for (let i = shuffledSongs.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+            }
+            console.log('Shuffled playlist:');
+            shuffledSongs.forEach((song, index) => {
+                console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+            });
+        } else {
+            this.currentPlaylist.play();
+        }
+        if (!this.repeat) {
+            console.log('Playlist playback ended.');
+        }
+    }
+}
+
+// Example usage:
+const musicPlayer = new MusicPlayer();
+
+// Create playlists
+const playlist1 = musicPlayer.createPlaylist('My Favorites');
+playlist1.addSong(new Song('Song 1', 'Artist 1', '3:45'));
+playlist1.addSong(new Song('Song 2', 'Artist 2', '4:20'));
+
+const playlist2 = musicPlayer.createPlaylist('Road Trip');
+playlist2.addSong(new Song('Song 3', 'Artist 3', '5:10'));
+playlist2.addSong(new Song('Song 4', 'Artist 4', '3:30'));
+
+// Set current playlist
+musicPlayer.setPlaylist('My Favorites');
+
+// Search for songs
+const searchResults = musicPlayer.search('Song');
+console.log('Search results:');
+searchResults.forEach((song, index) => {
+    console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+});
+
+// Toggle shuffle and repeat
+musicPlayer.toggleShuffle(); // Enable shuffle
+musicPlayer.toggleRepeat(); // Enable repeat
+
+// Play current playlist
+musicPlayer.play();
+
+**********************************************************************************************
+
+ans 2) . function createSong(title, artist, duration) {
+    return { title, artist, duration };
+}
+
+function createPlaylist(name) {
+    return { name, songs: [] };
+}
+
+function addSongToPlaylist(playlist, song) {
+    playlist.songs.push(song);
+}
+
+function playPlaylist(playlist) {
+    console.log(`Now playing playlist: ${playlist.name}`);
+    playlist.songs.forEach((song, index) => {
+        console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+    });
+}
+
+function searchSongs(playlists, songTitle) {
+    const searchResults = [];
+    playlists.forEach(playlist => {
+        playlist.songs.forEach(song => {
+            if (song.title.toLowerCase().includes(songTitle.toLowerCase())) {
+                searchResults.push(song);
+            }
+        });
+    });
+    return searchResults;
+}
+
+function setPlaylist(playlists, playlistName) {
+    const playlist = playlists.find(pl => pl.name === playlistName);
+    if (playlist) {
+        console.log(`Current playlist set to: ${playlistName}`);
+        return playlist;
+    } else {
+        console.log(`Playlist '${playlistName}' not found.`);
+        return null;
+    }
+}
+
+function toggleShuffle() {
+    return !shuffle;
+}
+
+function toggleRepeat() {
+    return !repeat;
+}
+
+function playMusic(currentPlaylist, shuffle, repeat) {
+    if (!currentPlaylist) {
+        console.log('No playlist selected.');
+        return;
+    }
+    if (shuffle) {
+        const shuffledSongs = [...currentPlaylist.songs];
+        for (let i = shuffledSongs.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]];
+        }
+        console.log('Shuffled playlist:');
+        shuffledSongs.forEach((song, index) => {
+            console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+        });
+    } else {
+        playPlaylist(currentPlaylist);
+    }
+    if (!repeat) {
+        console.log('Playlist playback ended.');
+    }
+}
+
+// Example usage:
+const playlists = [
+    createPlaylist('My Favorites'),
+    createPlaylist('Road Trip')
+];
+
+// Add songs to playlists
+addSongToPlaylist(playlists[0], createSong('Song 1', 'Artist 1', '3:45'));
+addSongToPlaylist(playlists[0], createSong('Song 2', 'Artist 2', '4:20'));
+addSongToPlaylist(playlists[1], createSong('Song 3', 'Artist 3', '5:10'));
+addSongToPlaylist(playlists[1], createSong('Song 4', 'Artist 4', '3:30'));
+
+// Set current playlist
+const currentPlaylist = setPlaylist(playlists, 'My Favorites');
+
+// Search for songs
+const searchResults = searchSongs(playlists, 'Song');
+console.log('Search results:');
+searchResults.forEach((song, index) => {
+    console.log(`${index + 1}. ${song.title} - ${song.artist} (${song.duration})`);
+});
+
+// Toggle shuffle and repeat
+const shuffle = toggleShuffle(); // Enable shuffle
+const repeat = toggleRepeat(); // Enable repeat
+
+// Play music
+playMusic(currentPlaylist, shuffle, repeat);
+
+
+
+==========================================================================================================
+==========================================================================================================

@@ -1,0 +1,203 @@
+1)Movie Recommendation System: Develop a program that takes user input for preferred genres (e.g., action, comedy, drama), filters a dictionary of movies based on these genres,
+ and displays recommended movies with their ratings.
+
+=====================================================================================
+  ans ). let movieStore = [{ name: parudeesa, genres:[drama,comedy],
+                     { name: vadachennai, genres:[action,drama]
+                     { name: titanic, genres:[drama,comedy]
+                     { name: iyobinte pusthakam , genres:[drama,comedy,action]]
+                     }]
+
+          const function searchMovies(genres){
+                  const recommendedMovies = movieStore.filter(movie => {
+                 return movie.genres.some(genre => preferredGenres.includes(genre));
+             });
+          }
+
+          console.log(searchMovies([action, drama]));
+
+====================================================================================
+
+
+2)Bookstore Inventory Management: Build a system to manage a bookstore's inventory. Allow users to add new books, update book information (title, author, genre, price),
+  and search for books by title or author.
+
+
+=====================================================================================
+
+   let bookStore = [{id:1,title:anne frank, author:aaaa, genre:biography, price: 100  
+                    }]
+
+       const function AddBook(book){
+         let newBook = { title: book.title,
+                         author:book.author,
+                         genre:book.genre,
+                         price:book.price 
+                       }
+           bookStore.push(newBook);
+       }
+      const function updateBook(id,book){
+           let newBook = { title: book.title,
+                         author:book.author,
+                         genre:book.genre,
+                         price:book.price 
+                       }
+          const findBookAndUpdate = bookStore.findByIdAndUpdate(id, newBook);
+      }
+
+     
+===================================================================================
+
+
+3)Fitness Tracker: Create a program that tracks users' daily exercise routines. Allow users to log different types of exercises (e.g., running, weightlifting, yoga) with durations
+ and calculate total calories burned.
+
+===================================================================================
+
+  function logExercise(exerciseLog, type, duration) {
+    if (!exerciseCalories.hasOwnProperty(type)) {
+        console.log("Invalid exercise type.");
+        return;
+    }
+    
+    const caloriesBurned = exerciseCalories[type] * duration;
+    exerciseLog.push({ type: type, duration: duration, caloriesBurned: caloriesBurned });
+}
+
+function calculateTotalCalories(exerciseLog) {
+    let totalCalories = 0;
+    exerciseLog.forEach(exercise => {
+        totalCalories += exercise.caloriesBurned;
+    });
+    return totalCalories;
+}
+
+===================================================================================
+
+4)You are given a string containing characters A  and B only. Your task is to change it into a string such that there are no matching adjacent characters. To do this, you are allowed to delete zero or more characters in the string.
+
+   Your task is to find the minimum number of required deletions.
+
+   Example
+
+   s=AABAAB
+
+   Remove an A at positions 0 and 3 to make s = ABAB in 2 in  deletions.
+
+   Sample Input
+
+   5
+   AAAA
+   BBBBB
+   ABABABAB
+   BABABA
+   AAABBB
+
+  Sample Output
+
+  3
+  4
+  0
+  0
+  4
+   
+==========================================================================
+
+  ans ).   function minDeletions(s) {
+           let deletions = 0;
+           for (let i = 0; i < s.length - 1; i++) {
+           if (s[i] === s[i + 1]) {
+            deletions++;
+           }
+        }
+        return deletions;
+       }
+
+      const strings = ["AAAA", "BBBBB", "ABABABAB", "BABABA", "AAABBB"];
+   strings.forEach(str => {
+    console.log(minDeletions(str));
+   });
+
+===========================================================================
+
+
+  5). 33)Given two strings, determine if they share a common substring. A substring may be as small as one character.
+
+Example
+
+s1 = 'and'
+s2 = 'art'
+
+These share the common substring a.
+
+s1 ='be'
+s2 = 'cat'
+
+These do not share a substring.
+
+==================================================================================
+
+
+  ans),  const function commonSubstring(str1, str2){
+          for(i=0; i<str1.length; i++){
+            return str2 includes str[i]
+            break(); 
+         } 
+
+        console.log(commonSubstring(and, art));
+        console.log(commonSubstring(and, art));
+
+
+==================================================================================
+
+
+
+Function Description
+
+Complete the function twoStrings in the editor below.
+
+twoStrings has the following parameter(s):
+
+string s1: a string
+string s2: another string
+Returns
+
+string: either YES or NO
+
+
+Sample Input
+
+2
+hello
+world
+hi
+world
+
+
+Sample Output
+
+YES
+NO
+
+
+
+ 6). 37)A robot moves in a plane starting from the original point (0,0). The robot can move toward UP, DOWN, LEFT and RIGHT with a given steps. 
+       The trace of robot movement is shown as the following: UP 5 DOWN 3 LEFT 3 RIGHT 2 ¡­ The numbers after the direction are steps. Please write a program to compute the distance
+       from current position after a sequence of movement and original point. If the distance is a float, then just print the nearest integer. Example: If the following tuples are given as
+       input to the program: UP 5 DOWN 3 LEFT 3 RIGHT 2 Then, the output of the program should be: 2
+
+       Hints: In case of input data being supplied to the question, it should be assumed to be a console input.
+
+=======================================================================================
+
+   ans) .  function robotLocation(steps){
+              let x = mod(steps.UP - steps.DOWN);
+              let y = mod(steps.LEFT - steps.Right);
+             
+             return mod(
+              
+           }
+
+=======================================================================================
+
+

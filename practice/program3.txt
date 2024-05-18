@@ -1,0 +1,29 @@
+// Dictionary of movies with genres and ratings
+const movies = [
+    { title: "The Dark Knight", genres: ["Action", "Crime", "Drama"], rating: 9.0 },
+    { title: "Inception", genres: ["Action", "Adventure", "Sci-Fi"], rating: 8.8 },
+    { title: "Pulp Fiction", genres: ["Crime", "Drama"], rating: 8.9 },
+    { title: "The Shawshank Redemption", genres: ["Drama"], rating: 9.3 },
+    { title: "Forrest Gump", genres: ["Drama", "Romance"], rating: 8.8 }
+];
+
+// Function to recommend movies based on preferred genres
+function recommendMovies(preferredGenres) {
+    // Filter movies based on preferred genres
+    const recommendedMovies = movies.filter(movie => {
+        return movie.genres.some(genre => preferredGenres.includes(genre));
+    });
+
+    // Sort recommended movies by rating (descending order)
+    recommendedMovies.sort((a, b) => b.rating - a.rating);
+
+    // Display recommended movies
+    console.log("Recommended Movies:");
+    recommendedMovies.forEach(movie => {
+        console.log(`${movie.title} - Rating: ${movie.rating}`);
+    });
+}
+
+// Example usage
+const preferredGenres = ["Action", "Adventure"];
+recommendMovies(preferredGenres);

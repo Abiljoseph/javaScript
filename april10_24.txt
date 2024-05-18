@@ -1,0 +1,73 @@
+   Qus 1 ). Trolls are attacking your comment section!
+
+            A common way to deal with this situation is to remove all of the vowels from the trolls' comments, neutralizing the threat.
+
+            Your task is to write a function that takes a string and return a new string with all vowels removed.
+
+            For example, the string "This website is for losers LOL!" would become "Ths wbst s fr lsrs LL!".
+
+   =============================================================================================================================
+
+    ans). function removeVowels(inputString) {
+    const vowels = "aeiouAEIOU";
+    let result = "";
+    for (let char of inputString) {
+        if (!vowels.includes(char)) {
+            result += char;
+        }
+    }
+    return result;
+    }
+
+    const inputString = "This website is for losers LOL!";
+    const result = removeVowels(inputString);
+    console.log(result); // Output: Ths wbst s fr lsrs LL!
+
+
+  Ans 2 ). function removeVowels(inputString) {
+           return inputString.replace(/[aeiouAEIOU]/g, '');
+           }
+
+        // Example usage:
+        const inputString = "This website is for losers LOL!";
+        const result = removeVowels(inputString);
+        console.log(result); // Output: Ths wbst s fr lsrs LL!
+
+   =============================================================================================================================
+
+
+   Qus 2).You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment,
+          so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones 
+          -- everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']).
+          You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block,
+          so create a function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) 
+          and will, of course, return you to your starting point. Return false otherwise.
+
+   =============================================================================================================================
+
+   ans). function isValidWalk(walk) {
+         var dx = 0
+         var dy = 0
+         var dt = walk.length
+  
+         for (var i = 0; i < walk.length; i++) {
+         switch (walk[i]) {
+      case 'n': dy--; break
+      case 's': dy++; break
+      case 'w': dx--; break
+      case 'e': dx++; break
+        }
+        }
+  
+      return dt === 10 && dx === 0 && dy === 0
+      }
+
+   ans 2).  function isValidWalk(walk) {
+            function count(val) {
+            return walk.filter(function(a){return a==val;}).length;
+            }
+            return walk.length==10 && count('n')==count('s') && count('w')==count('e');
+            }
+
+   =============================================================================================================================
+

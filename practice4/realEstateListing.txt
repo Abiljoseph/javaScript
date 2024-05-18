@@ -1,0 +1,45 @@
+Qus ). Real Estate Listings: Create a program to display real estate listings. Allow users to search for properties by location, price range, and property type (e.g., house, apartment),
+       and display details such as photos, amenities,and contact information for the listing agent.
+
+
+ans ).// Sample real estate listings data
+const listings = [
+  {
+    id: 1,
+    location: "New York",
+    price: 1000000,
+    type: "House",
+    photos: ["house1.jpg", "house2.jpg"],
+    amenities: ["Swimming pool", "Garden", "Garage"],
+    agent: {
+      name: "John Doe",
+      contact: "john@example.com"
+    }
+  },
+  {
+    id: 2,
+    location: "Los Angeles",
+    price: 800000,
+    type: "Apartment",
+    photos: ["apartment1.jpg", "apartment2.jpg"],
+    amenities: ["Gym", "Balcony", "Parking"],
+    agent: {
+      name: "Jane Smith",
+      contact: "jane@example.com"
+    }
+  },
+  // Add more listings as needed
+];
+
+// Function to search for properties by location, price range, and type
+function searchListings(location, minPrice, maxPrice, type) {
+  return listings.filter(listing =>
+    listing.location.toLowerCase().includes(location.toLowerCase()) &&
+    listing.price >= minPrice &&
+    listing.price <= maxPrice &&
+    listing.type.toLowerCase() === type.toLowerCase()
+  );
+}
+
+// Example usage:
+console.log("Search results:", searchListings("New York", 500000, 1500000, "House"));

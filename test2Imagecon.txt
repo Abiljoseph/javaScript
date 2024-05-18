@@ -1,0 +1,106 @@
+1.	Write a program to find the intersection of two arrays without using in-built functions.
+
+Sample Input:
+ Arrays: [1, 2, 3, 4] and [3, 4, 5, 6] 
+Output: 
+"Intersection: [3, 4]"
+
+ ans ). function intersection(arr1, arr2){
+          let commonElements = [];
+          for(let i=0; i<arr1.length ; i++){
+                for(let j=0; j<arr2.length; j++){
+                      if(arr[j] == arr[i] && !commonElements.includes(arr[i])){
+                        commonElements.push(arr[j]);
+                        }
+                   }
+              }
+          return commonElements;
+        }
+
+
+
+2.	Write a program to find the square root of a given number without using built-in functions. 
+Sample Input:
+ Number: 25 
+Output: 
+"Square root: 5"
+
+
+ ans). function squareRoot(number) {
+    let guess = number / 2; // Initial guess
+    let tolerance = 0.00001; // Tolerance for accuracy
+
+    // Iteratively improve the guess using Newton's method
+    while (Math.abs(guess * guess - number) > tolerance) {
+        guess = (guess + number / guess) / 2;
+    }
+
+    return Math.floor(guess); // Return the square root (rounded down to nearest integer)
+    }
+
+    // Sample Input
+    const number = 25;
+
+    // Output
+    const result = squareRoot(number);
+    console.log("Square root:", result);
+
+
+
+3.	Create a program to find the first non-repeating character in a string. Sample Input: 
+String: 
+"programming"
+ Output: 
+"First non-repeating character: p"
+
+ ans). function FirstNonRepeatingCharacter(str){
+       let firstChar = '';
+            let char = str.split('');
+            for(let i=0 ; i<=char.length; i++){
+                if(str.indexOf(char[i]) === str.lastIndexOf(char[i])){ 
+                   firstChar = char[i];
+                   break
+                } 
+            }
+         return firstChar	
+       }
+
+
+4.	Write a program to find the length of the longest increasing subarray in an array of integers. 
+Sample Input: 
+Array: [1, 2, 3, 2, 5, 7, 8, 9]
+Output: 
+"Length of longest increasing subarray: 5"
+
+ ans ).  function longestIncreasingSubArray(arr){
+    let maxLength = 1
+    let currentLenght = 1
+     for(let i=1; i<arr.length; i++){
+         if(arr[i]>arr[i-1]){
+            
+           currentLength++;
+           }else{
+           maxLength = Math.max(maxlength,currentLength)
+           currentLength = 1
+        }
+       }
+        maxLength = Math.max(maxLenth,currentLenth)
+        return maxLength
+       }
+
+
+
+5.	Create a program to find the sum of square roots of the first N natural numbers. 
+Sample Input:
+ N = 4 
+Output: 
+"Sum of square roots: 7.416"
+
+
+  ans). function sumOfSquareRoots(num){
+        let sum = 0 
+           for(let i=1; i<=num; i++){
+              sum += sqrt(i);
+          }
+     return sum.toFixed(3);
+    }

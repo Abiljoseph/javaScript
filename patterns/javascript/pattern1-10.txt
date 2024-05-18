@@ -1,0 +1,116 @@
+program - 1
+
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+1 2 3 4 5 6
+1 2 3 4 5 6 7
+
+sol ).function printPattern(rows) {
+    for (var i = 1; i <= rows; i++) {
+        var row = '';
+        for (var j = 1; j <= i; j++) {
+            row += j + ' ';
+        }
+        console.log(row);
+    }
+}
+
+// Call the function with the desired number of rows
+printPattern(6);
+
+*****************************************************
+
+program - 2
+
+1 2 3 4 5 6 7
+1 2 3 4 5 6
+1 2 3 4 5
+1 2 3 4
+1 2 3
+1 2
+1
+
+
+sol ). function printPattern(rows){
+       for(let i=rows;i>=1 ; i--){
+        var row = '';
+        for(let j=1; j<= i ; j++){
+            row += j + ' ';
+        }
+        console.log(row);
+    }
+    }
+
+    printPattern(7);
+
+*****************************************************
+
+program - 3 
+
+1
+2 2
+3 3 3
+4 4 4 4
+5 5 5 5 5
+6 6 6 6 6 6
+7 7 7 7 7 7 7
+
+function printPattern(rows){
+    for(let i=1;i<=rows ; i++){
+        var row = '';
+        for(let j=1; j<= i ; j++){
+            row += i + ' ';
+        }
+        console.log(row);
+    }
+}
+
+printPattern(7);
+
+
+******************************************************
+
+program - 4
+
+7 7 7 7 7 7 7
+6 6 6 6 6 6
+5 5 5 5 5
+4 4 4 4
+3 3 3
+2 2
+1
+
+
+function printPattern(rows){
+    for(let i=rows;i>=1 ; i--){
+        var row = '';
+        for(let j=1; j<= i ; j++){
+            row += i + ' ';
+        }
+        console.log(row);
+    }
+}
+
+printPattern(7);
+
+
+*******************************************************
+
+program - 5 
+
+7
+7 6
+7 6 5
+7 6 5 4
+7 6 5 4 3
+7 6 5 4 3 2
+7 6 5 4 3 2 1 
+
+
+
+
+
+

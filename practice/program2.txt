@@ -1,0 +1,33 @@
+function beautifulPairs(A, B) {
+    const freqA = new Map();
+    const freqB = new Map();
+    
+    // Count frequencies of elements in arrays A and B
+    A.forEach(num => freqA.set(num, (freqA.get(num) || 0) + 1));
+    B.forEach(num => freqB.set(num, (freqB.get(num) || 0) + 1));
+
+    let maxPairs = 0;
+    let hasUnpaired = false;
+
+    // Find the number of pairs and check for unpaired elements in B
+    B.forEach(num => {
+        if (freqA.has(num) && freqB.has(num)) {
+            maxPairs += Math.min(freqA.get(num), freqB.get(num));
+        } else {
+            hasUnpaired = true;
+        }
+    });
+
+    // If there is at least one unpaired element in B, we can increase the beautiful set size by changing it
+    if (hasUnpaired) {
+        return maxPairs + 1;
+    } else {
+        // If all elements in B already form pairs with elements in A, decrement the beautiful set size
+        return maxPairs - 1;
+    }
+}
+
+// Test case
+const A = [10, 11, 12, 5, 14];
+const B = [8, 9, 11, 11, 5];
+console.log(beautifulPairs(A, B)); // Output: 4

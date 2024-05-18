@@ -1,0 +1,153 @@
+1)Create a program to check if a given number is a perfect number (a positive integer that is equal to the sum of its proper divisors).
+Sample Input:
+Number:
+ 28
+Output: 
+"28 is a perfect number."
+
+  ======================================================================
+
+    function isPerfectNumber(num) {
+     let sumofDivisors = 0;
+     for(let i=1; i < num ; i++){
+        if(num % i === 0){
+        sumofDivisors += i
+     }
+    }
+    return sumofDivisors === num;
+    }
+ const number = parseInt(prompt("Number: "));
+
+    if(isPerfectNumber(number))	{
+    console.log(number + " is a perfect number")
+    }else{
+    console.log(number + " is not a perfect number")
+    }
+
+  =======================================================================
+
+
+2)Write a program to find and print the common characters between two strings.
+Sample Input:
+Strings:
+ "Hello" and "world"
+Output: 
+"Common Characters: 'l', 'o'"
+
+  ========================================================================
+ 
+  ans1). function findCommonCharacters(str1, str2){
+           return [...new Set(str1)].filter(char => str2.includes(char));
+         }
+         const string1 = "Hello"
+         const string2 = "world"
+     
+         const commonChars = findCommonCharacters(string1, string2)
+         console.log("common Characters:", commonChars.join(","));
+
+
+  ans2). function findCommonCharacters(string1, string2){
+         const set1 = new Set(str1);
+         const set2 = new Set(str2);
+ 
+         const commonChars = [];
+
+         set1.forEach(char => {
+          if(set2.has(char)){
+          commonChars.push(char)
+         }
+         });
+       return commonChars;
+      }
+       
+      const str1 = "Hello";
+      const str2 = "world";
+      
+      const commonChars = findCommonCharacters(str1, str2)
+
+      console.log("common characters in these string is" , commonChars.join(", ") 
+
+
+  ===============================================================================
+
+
+3)Write the Program for print the following pattern:
+0  
+0  1  
+0  2  4  
+0  3  6   9  
+0  4  8   12  16  
+0  5  10  15  20  25  
+0  6  12  18  24  30  36
+
+  ==============================================================================
+
+  ans ). function printPattern(rows){
+         for(let i=0; i < rows; i++){
+            let row = "";
+                for(let j=0; j<=1; j++){
+                row += i*j + " ";
+           }
+           console.log(row);
+          }
+         }
+
+        const numberOfRows = 7;
+        printPattern(numberOfRows);
+
+  ==============================================================================
+
+4)Create a program to remove vowels from a given string. 
+Sample Input: 
+String: "programming"
+ Output: 
+"String without vowels: prgrmmng"
+
+  ==============================================================================
+
+  ans ).   function removeVowels(inputString) {
+              const vowelsRegex = /[aeiouAEIOU]/g;
+              const stringWithoutVowels = inputString.replace(vowelsRegex, "");
+
+              return stringWithoutVowels;
+           }
+           const inputString = "programming"
+           
+           const stringWithoutVowels = removeVowels(inputString);
+
+           console.log("String without Vowels :", stringWithoutVowels)
+
+
+  ==============================================================================
+
+  
+
+5)Implement a program to rotate an array to the right by a given number of steps.
+ Sample Input:
+ Array: [1, 2, 3, 4, 5], Steps: 2
+ Output: 
+"Rotated Array: [3, 4, 5, 1, 2]”
+
+  ==============================================================================
+
+ ans ).    function rotateArrayRight(arr, steps){
+             const n = arr.length;
+             const rotatedArray = new Array(n)
+
+             const effectiveSteps = steps % n;
+
+             for(i=0; i<n ; i++){
+                 rotatedArray[(i + effectiveSteps) % n] = arr[i]
+              }
+
+            return  rotatedArray;
+           }
+
+         const array = [1,2,3,4,5];
+         const steps = 2;
+
+        const rotatedArray = rotateArrayRight(array, steps);
+
+        console.log("Rotated array":, rotatedArray);
+
+  =============================================================================  

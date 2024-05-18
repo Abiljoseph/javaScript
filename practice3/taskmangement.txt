@@ -1,0 +1,66 @@
+qus). Task Management System: Develop a tool to manage tasks and to-do lists. Allow users to create tasks, set deadlines, mark tasks as complete, and prioritize tasks based on urgency.
+
+================================================================================
+
+ans).  // Task object constructor function
+function Task(description, deadline) {
+  return {
+    description,
+    deadline,
+    completed: false
+  };
+}
+
+// Task Manager object constructor function
+function TaskManager() {
+  const tasks = [];
+
+  // Add a task
+  function addTask(description, deadline) {
+    const task = Task(description, deadline);
+    tasks.push(task);
+  }
+
+  // Mark a task as completed
+  function markTaskAsCompleted(taskIndex) {
+    if (taskIndex >= 0 && taskIndex < tasks.length) {
+      tasks[taskIndex].completed = true;
+    } else {
+      console.log("Invalid task index.");
+    }
+  }
+
+  // List all tasks
+  function listTasks() {
+    console.log("Tasks:");
+    tasks.forEach((task, index) => {
+      console.log(
+        `${index + 1}. ${task.description} - Deadline: ${task.deadline} - ${
+          task.completed ? "Completed" : "Pending"
+        }`
+      );
+    });
+  }
+
+  // Return public methods
+  return {
+    addTask,
+    markTaskAsCompleted,
+    listTasks
+  };
+}
+
+// Example usage:
+const taskManager = TaskManager();
+
+taskManager.addTask("Complete project proposal", "2024-05-01");
+taskManager.addTask("Prepare presentation slides", "2024-05-03");
+taskManager.addTask("Send progress report", "2024-04-30");
+
+taskManager.listTasks();
+
+// Mark the first task as completed
+taskManager.markTaskAsCompleted(0);
+
+console.log("\nAfter marking first task as completed:");
+taskManager.listTasks();
